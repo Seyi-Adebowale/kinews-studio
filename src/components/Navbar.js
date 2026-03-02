@@ -61,10 +61,14 @@ export default function Navbar() {
           : "bg-transparent border-b border-transparent",
       ].join(" ")}
     >
-      <div className="mx-auto max-w-7xl px-10 py-5 flex items-center justify-between">
+      <div className="mx-auto max-w-7xl px-6 py-5 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center">
-          <img src={logo} alt="Kinews Studio" className="w-60 h-auto" />
+          <img
+            src={logo}
+            alt="Kinews Studio"
+            className="w-48 lg:w-60 h-auto"
+          />
         </Link>
 
         {/* Desktop Nav */}
@@ -88,7 +92,7 @@ export default function Navbar() {
         {/* Desktop CTA */}
         <Link
           to="/book"
-          className="hidden md:inline-flex rounded-full bg-white px-10 py-2.5 text-xs font-medium tracking-[0.08em] uppercase text-black
+          className="hidden md:inline-flex rounded-full bg-white px-6 py-2.5 text-xs font-medium tracking-[0.08em] uppercase text-black
 shadow-[0_8px_30px_rgba(255,255,255,0.18)]
 hover:shadow-[0_12px_40px_rgba(255,255,255,0.28)]
 hover:-translate-y-[1px]
@@ -149,7 +153,7 @@ transition-all duration-200"
               exit={{ y: -12, opacity: 0 }}
               transition={{ duration: 0.22, ease: "easeOut" }}
             >
-              <div className="mx-auto max-w-7xl px-10 py-6">
+              <div className="mx-auto max-w-7xl px-6 py-6">
                 <div className="space-y-1">
                   <NavLink to="/" className={mobileLinkClass} end>
                     Home
@@ -171,7 +175,7 @@ transition-all duration-200"
                 <div className="mt-6">
                   <Link
                     to="/book"
-                    className="inline-flex w-full items-center justify-center rounded-full bg-white px-10 py-3 text-xs font-medium tracking-[0.10em] uppercase text-black
+                    className="inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3 text-xs font-medium tracking-[0.10em] uppercase text-black
 shadow-[0_8px_30px_rgba(255,255,255,0.18)]
 hover:shadow-[0_12px_40px_rgba(255,255,255,0.28)]
 hover:-translate-y-[1px]

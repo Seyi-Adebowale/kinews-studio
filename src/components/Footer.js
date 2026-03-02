@@ -4,7 +4,7 @@ import LogoImage from "../assets/logo.png";
 export default function Footer() {
   return (
     <footer className="bg-black border-t border-white/10 mt-16">
-      <div className="max-w-7xl mx-auto px-10 sm:px-8 lg:px-12 py-12">
+      <div className="max-w-7xl mx-auto px-6 sm:px-6 lg:px-12 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {/* About Section with Logo */}
           <div className="flex flex-col items-start">

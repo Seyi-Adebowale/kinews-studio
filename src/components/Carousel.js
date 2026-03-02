@@ -1,90 +1,121 @@
 import { useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-export default function Carousel({ frames }) {
+// frames: [{ id, name, description, image }]
+export default function FramesCarouselSection({ frames = [] }) {
   const scrollRef = useRef(null);
 
   const scroll = (direction) => {
-    const container = scrollRef.current;
-    const scrollAmount = 340;
+    const el = scrollRef.current;
+    if (!el) return;
 
-    if (!container) return;
+    // card width + gap (tuned to your layout)
+    const STEP = 320 + 32;
 
-    container.scrollBy({
-      left: direction === "left" ? -scrollAmount : scrollAmount,
+    el.scrollBy({
+      left: direction === "left" ? -STEP : STEP,
       behavior: "smooth",
     });
   };
 
   return (
-    <div className="mt-12 relative">
+    <section className="py-10 overflow-hidden bg-white">
+      <div className="max-w-7xl mx-auto px-6 sm:px-6 lg:px-6">
+        <div className="flex items-end justify-between mb-12 gap-6">
+          <div>
+            <h2 className="text-4xl font-extrabold text-black mb-2">
+              Shop our Frames
+            </h2>
+            {/* <p className="text-black/60 text-lg">
+              Clean finishes that let the photo do the talking.
+            </p> */}
+          </div>
 
-      {/* Left Arrow */}
-      <button
-        onClick={() => scroll("left")}
-        className="absolute left-0 top-1/2 -translate-y-1/2 z-10
-        hidden md:flex items-center justify-center
-        h-10 w-10 rounded-full border border-black/10 bg-white
-        shadow-md hover:bg-black hover:text-white transition"
-        aria-label="Scroll left"
-      >
-        <ChevronLeft size={18} />
-      </button>
-
-      {/* Right Arrow */}
-      <button
-        onClick={() => scroll("right")}
-        className="absolute right-0 top-1/2 -translate-y-1/2 z-10
-        hidden md:flex items-center justify-center
-        h-10 w-10 rounded-full border border-black/10 bg-white
-        shadow-md hover:bg-black hover:text-white transition"
-        aria-label="Scroll right"
-      >
-        <ChevronRight size={18} />
-      </button>
-
-      {/* Scroll Container */}
-      <div
-        ref={scrollRef}
-        className="flex gap-8 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide"
-      >
-        {frames.map((f) => (
-          <div
-            key={f.id}
-            className="snap-start shrink-0 w-[280px] sm:w-[320px] group"
-          >
-            {/* Frame */}
-            <div className="overflow-hidden rounded-2xl border border-black/10 bg-white
-              shadow-[0_20px_60px_rgba(0,0,0,0.08)]
-              transition duration-500
-              hover:-translate-y-2
-              hover:shadow-[0_30px_80px_rgba(0,0,0,0.12)]"
+          <div className="flex gap-3">
+            <button
+              type="button"
+              onClick={() => scroll("left")}
+              aria-label="Scroll left"
+              className="p-3 rounded-full border border-black/20 bg-white text-black
+              hover:bg-black hover:text-white transition-colors active:scale-90 shadow-sm"
             >
-              <div className="relative bg-neutral-100 p-4">
-                <div className="overflow-hidden rounded-lg">
+              <ChevronLeft size={20} />
+            </button>
+
+            <button
+              type="button"
+              onClick={() => scroll("right")}
+              aria-label="Scroll right"
+              className="p-3 rounded-full border border-black/20 bg-black text-white
+              hover:bg-black/90 transition-colors shadow-lg shadow-black/20 active:scale-90"
+            >
+              <ChevronRight size={20} />
+            </button>
+          </div>
+        </div>
+
+        <div
+          ref={scrollRef}
+          className="flex gap-8 overflow-x-auto hide-scrollbar pb-8 px-1 snap-x snap-mandatory relative items-stretch"
+          style={{
+            WebkitOverflowScrolling: "touch",
+            scrollbarWidth: "none",
+            msOverflowStyle: "none",
+          }}
+        >
+          {frames.map((f) => (
+            <div
+              key={f.id || f.name}
+              className="min-w-[320px] bg-white rounded-3xl overflow-hidden
+              shadow-xl border border-black/10 snap-start group flex flex-col"
+            >
+              {/* framed image */}
+              <div className="h-60 bg-[#f4f1ec] p-6 flex items-center justify-center">
+                <div className="w-full h-full bg-white rounded-2xl overflow-hidden border border-black/10 flex items-center justify-center">
                   <img
-                    src={f.image}
                     alt={f.name}
-                    className="h-56 w-full object-cover transition duration-700 group-hover:scale-105"
+                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                    src={f.image}
                     loading="lazy"
                   />
                 </div>
               </div>
-            </div>
 
-            {/* Text */}
-            <div className="mt-6 text-center">
-              <div className="text-base font-semibold tracking-tight text-black">
-                {f.name}
+              {/* content */}
+              <div className="p-8 flex flex-col flex-1 text-center">
+                <h4 className="font-bold text-md text-black leading-tight">
+                  {f.name}
+                </h4>
+
+                <p className="mt-3 text-sm text-black/60 leading-relaxed">
+                  {f.description}
+                </p>
+
+                {/* no button (as requested) */}
+                <div className="mt-auto pt-2" />
               </div>
-
-              <p className="mt-3 text-sm text-black/60 leading-relaxed">
-                {f.description}
-              </p>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+
+        {/* Hide webkit scrollbar (scoped) */}
+        <style>{`
+          .hide-scrollbar::-webkit-scrollbar { display: none; }
+        `}</style>
       </div>
-    </div>
+
+      {/* Shop Frames CTA */}
+      <div className="mt-8 flex justify-center">
+        <button
+          type="button"
+          onClick={() => {
+            // TODO: add navigation later
+          }}
+         className="rounded-full border border-black px-6 py-3 text-sm text-black hover:bg-black hover:text-white transition"
+        >
+          Order Frames →
+        </button>
+      </div>
+    </section>
   );
 }
