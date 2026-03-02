@@ -1,0 +1,10 @@
+export default function BookSession() {
+  return (
+    <div className="mx-auto max-w-6xl px-6 py-14">
+      <h1 className="text-4xl font-semibold tracking-tight">Book a Session</h1>
+      <p className="mt-3 text-white/70">
+        Booking form + date selection + payment UI goes here (frontend only for now).
+      </p>
+    </div>
+  );
+}
