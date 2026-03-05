@@ -135,7 +135,7 @@ transition-all duration-200"
 
             {/* Menu Panel */}
             <motion.div
-              className="fixed top-[106px] left-0 right-0 z-50 md:hidden border-t border-white/10 bg-black"
+              className="fixed top-[95px] left-0 right-0 z-50 md:hidden border-t border-white/10 bg-black"
               initial={{ y: -12, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -12, opacity: 0 }}
