@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import studioImage from "../assets/studio-session.jpg";
 
 export default function BookSessionCTA() {
@@ -43,18 +44,15 @@ export default function BookSessionCTA() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                <button
-                  type="button"
-                  onClick={() => {
-                    // TODO: add navigation later
-                  }}
+                <Link
+                  to="/book"
                   className="inline-flex items-center gap-3 rounded-full bg-white px-8 py-3
                   text-sm font-semibold text-black
                   shadow-[0_12px_40px_rgba(255,255,255,0.15)]
                   hover:opacity-90 transition active:scale-95"
                 >
                   Book a Studio Session →
-                </button>
+                </Link>
               </motion.div>
 
             </div>

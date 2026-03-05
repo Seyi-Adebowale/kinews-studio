@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 // frames: [{ id, name, description, image }]
 export default function FramesCarouselSection({ frames = [] }) {
@@ -9,7 +10,6 @@ export default function FramesCarouselSection({ frames = [] }) {
     const el = scrollRef.current;
     if (!el) return;
 
-    // card width + gap (tuned to your layout)
     const STEP = 320 + 32;
 
     el.scrollBy({
@@ -21,14 +21,11 @@ export default function FramesCarouselSection({ frames = [] }) {
   return (
     <section className="py-10 overflow-hidden bg-white">
       <div className="max-w-7xl mx-auto px-6 sm:px-6 lg:px-6">
-        <div className="flex items-end justify-between mb-12 gap-6">
+        <div className="flex items-end justify-between mb-6 gap-6">
           <div>
             <h2 className="text-4xl font-extrabold text-black mb-2">
               Shop our Frames
             </h2>
-            {/* <p className="text-black/60 text-lg">
-              Clean finishes that let the photo do the talking.
-            </p> */}
           </div>
 
           <div className="flex gap-3">
@@ -69,7 +66,6 @@ export default function FramesCarouselSection({ frames = [] }) {
               className="min-w-[320px] bg-white rounded-3xl overflow-hidden
               shadow-xl border border-black/10 snap-start group flex flex-col"
             >
-              {/* framed image */}
               <div className="h-60 bg-[#f4f1ec] p-6 flex items-center justify-center">
                 <div className="w-full h-full bg-white rounded-2xl overflow-hidden border border-black/10 flex items-center justify-center">
                   <img
@@ -81,7 +77,6 @@ export default function FramesCarouselSection({ frames = [] }) {
                 </div>
               </div>
 
-              {/* content */}
               <div className="p-8 flex flex-col flex-1 text-center">
                 <h4 className="font-bold text-md text-black leading-tight">
                   {f.name}
@@ -91,14 +86,12 @@ export default function FramesCarouselSection({ frames = [] }) {
                   {f.description}
                 </p>
 
-                {/* no button (as requested) */}
                 <div className="mt-auto pt-2" />
               </div>
             </div>
           ))}
         </div>
 
-        {/* Hide webkit scrollbar (scoped) */}
         <style>{`
           .hide-scrollbar::-webkit-scrollbar { display: none; }
         `}</style>
@@ -106,15 +99,12 @@ export default function FramesCarouselSection({ frames = [] }) {
 
       {/* Shop Frames CTA */}
       <div className="mt-8 flex justify-center">
-        <button
-          type="button"
-          onClick={() => {
-            // TODO: add navigation later
-          }}
-         className="rounded-full border border-black px-6 py-3 text-sm text-black hover:bg-black hover:text-white transition"
+        <Link
+          to="/shop"
+          className="rounded-full border border-black px-6 py-3 text-sm text-black hover:bg-black hover:text-white transition"
         >
           Order Frames →
-        </button>
+        </Link>
       </div>
     </section>
   );

@@ -13,9 +13,7 @@ export default function Footer() {
               alt="Dee Delicious Logo"
               className="w-62 h-20 mb-3"
             />
-            {/* <p className="mt-3 text-sm text-white/70 leading-relaxed">
-              Fresh meals, fast pickup, and a smooth dine-in experience.
-            </p> */}
+           
           </div>
 
           {/* Opening Hours */}

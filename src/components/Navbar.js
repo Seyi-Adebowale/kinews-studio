@@ -3,22 +3,13 @@ import { NavLink, Link, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import logo from "../assets/logo.png";
 
-// ✅ Active: pure white + underline
-// ✅ Inactive: never pure white (even on hover)
+// Active link styling
 const linkClass = ({ isActive }) =>
   `relative text-xs tracking-[0.1em] uppercase transition-all duration-200 ${
     isActive
       ? "text-white after:absolute after:left-0 after:-bottom-2 after:w-full after:h-[2px] after:bg-white"
       : "text-white/60 hover:text-white/80"
   }`;
-
-// ✅ Non-routing desktop items (not NavLink, so they won't ever be "active")
-const navItemClass =
-  "text-xs tracking-[0.1em] uppercase transition-all duration-200 text-white/60 hover:text-white/80";
-
-// ✅ Non-routing mobile items
-const mobileItemClass =
-  "block py-3 text-sm tracking-[0.12em] uppercase text-white/60 hover:text-white/80 transition";
 
 const mobileLinkClass = ({ isActive }) =>
   `relative block py-3 text-sm tracking-[0.12em] uppercase transition-all duration-200 ${
@@ -44,7 +35,7 @@ export default function Navbar() {
     setOpen(false);
   }, [location.pathname]);
 
-  // Lock body scroll when menu open
+  // Lock body scroll when mobile menu open
   useEffect(() => {
     if (open) document.body.style.overflow = "hidden";
     else document.body.style.overflow = "";
@@ -64,11 +55,7 @@ export default function Navbar() {
       <div className="mx-auto max-w-7xl px-6 py-5 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center">
-          <img
-            src={logo}
-            alt="Kinews Studio"
-            className="w-48 lg:w-60 h-auto"
-          />
+          <img src={logo} alt="Kinews Studio" className="w-48 lg:w-60 h-auto" />
         </Link>
 
         {/* Desktop Nav */}
@@ -77,16 +64,17 @@ export default function Navbar() {
             Home
           </NavLink>
 
-          {/* Not routing yet -> use buttons so they don't get "active" */}
-          <button type="button" className={navItemClass}>
+          <NavLink to="/packages" className={linkClass}>
             Event Packages
-          </button>
-          <button type="button" className={navItemClass}>
+          </NavLink>
+
+          <NavLink to="/shop" className={linkClass}>
             Shop Frames
-          </button>
-          <button type="button" className={navItemClass}>
+          </NavLink>
+
+          <NavLink to="/contact" className={linkClass}>
             Contact
-          </button>
+          </NavLink>
         </nav>
 
         {/* Desktop CTA */}
@@ -145,7 +133,7 @@ transition-all duration-200"
               onClick={() => setOpen(false)}
             />
 
-            {/* Panel */}
+            {/* Menu Panel */}
             <motion.div
               className="fixed top-[106px] left-0 right-0 z-50 md:hidden border-t border-white/10 bg-black"
               initial={{ y: -12, opacity: 0 }}
@@ -159,19 +147,20 @@ transition-all duration-200"
                     Home
                   </NavLink>
 
-                  {/* Not routing yet -> buttons */}
-                  <button type="button" className={mobileItemClass}>
+                  <NavLink to="/packages" className={mobileLinkClass}>
                     Event Packages
-                  </button>
-                  <button type="button" className={mobileItemClass}>
+                  </NavLink>
+
+                  <NavLink to="/shop" className={mobileLinkClass}>
                     Shop Frames
-                  </button>
-                  <button type="button" className={mobileItemClass}>
+                  </NavLink>
+
+                  <NavLink to="/contact" className={mobileLinkClass}>
                     Contact
-                  </button>
+                  </NavLink>
                 </div>
 
-                {/* Mobile CTA inside menu */}
+                {/* Mobile CTA */}
                 <div className="mt-6">
                   <Link
                     to="/book"

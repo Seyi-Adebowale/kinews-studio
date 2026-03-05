@@ -16,32 +16,37 @@ const services = [
     desc: "Photo + video coverage for weddings, birthdays, corporate events, and special celebrations.",
     cta: "Explore coverage →",
     img: eventImg,
+    to: "/packages",
   },
   {
     title: "Bespoke Picture Framing",
     desc: "Any size, any style. Custom frames designed to display your best photos beautifully.",
-    cta: "Get a custom frame →",
+    cta: "Shop frames →",
     img: framingImg,
+    to: "/shop",
   },
   {
     title: "Studio Photography Sessions",
     desc: "Modern studio photoshoots for portraits, family shoots, graduations, maternity, and personal branding.",
     cta: "Book a studio session →",
     img: studioImg,
+    to: "/book",
   },
   {
     title: "Albums & Prints",
     desc: "Premium photo albums and professional-grade prints to preserve your moments for years to come.",
-    cta: "Explore albums & prints →",
+    cta: "Contact us →",
     img: albumImg,
+    to: "/contact",
   },
 ];
 
 export default function Home() {
+
   return (
     <div>
       {/* HERO */}
-      <section className="relative min-h-[92vh] flex items-center overflow-hidden">
+      <section className="relative min-h-[100dvh] flex items-center overflow-hidden">
         {/* Background image */}
         <picture className="absolute inset-0">
           <source media="(max-width: 767px)" srcSet={heroImageMobile} />
@@ -122,6 +127,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* SERVICES */}
       <section className="bg-white">
         <div className="pt-16 text-center">
           <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-black leading-tight">
@@ -134,17 +140,14 @@ export default function Home() {
               <div key={s.title} className="text-center">
                 {/* FRAME */}
                 <div className="mx-auto max-w-md">
-                  {/* Outer frame */}
                   <div
                     className="bg-white p-3 md:p-4 border border-black/10
-              shadow-[0_20px_60px_rgba(0,0,0,0.15)]
-              transition duration-500
-              hover:-translate-y-2
-              hover:shadow-[0_30px_80px_rgba(0,0,0,0.22)]"
+                    shadow-[0_20px_60px_rgba(0,0,0,0.15)]
+                    transition duration-500
+                    hover:-translate-y-2
+                    hover:shadow-[0_30px_80px_rgba(0,0,0,0.22)]"
                   >
-                    {/* Matte (inner mount like real frame) */}
                     <div className="bg-neutral-100 p-3">
-                      {/* Image */}
                       <div className="overflow-hidden">
                         <img
                           src={s.img}
@@ -165,6 +168,16 @@ export default function Home() {
                 <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-black/70">
                   {s.desc}
                 </p>
+
+                {/* ✅ Real link */}
+                <div className="mt-5">
+                  <Link
+                    to={s.to}
+                    className="inline-flex items-center justify-center text-sm font-semibold text-black/80 hover:text-black transition"
+                  >
+                    {s.cta}
+                  </Link>
+                </div>
               </div>
             ))}
           </div>
@@ -174,7 +187,6 @@ export default function Home() {
       {/* PACKAGES */}
       <section className="border-t border-white/10 bg-black">
         <div className="mx-auto max-w-7xl px-6 py-16 md:py-20">
-          {/* Creative Heading */}
           <div className="text-center">
             <div className="text-sm tracking-[0.35em] uppercase text-white/60">
               Event Packages
@@ -185,13 +197,12 @@ export default function Home() {
             </h2>
           </div>
 
-          {/* Simplified Cards */}
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {packages.map((p) => (
               <div
                 key={p.id}
                 className="group rounded-2xl border border-white/10 bg-white/[0.04] p-8 text-center
-          hover:bg-white/[0.07] transition duration-300"
+                hover:bg-white/[0.07] transition duration-300"
               >
                 <div className="text-sm tracking-[0.25em] uppercase text-white/50">
                   {p.name}
@@ -201,39 +212,34 @@ export default function Home() {
 
                 <p className="mt-4 text-sm text-white/60">{p.tagline}</p>
 
-                <button
-                  type="button"
+                {/* ✅ Real link */}
+                <Link
+                  to="/packages"
                   className="mt-8 inline-flex items-center justify-center text-sm font-medium text-white/80 hover:text-white transition"
-                  onClick={() => {
-                    // Later connect to real packages page
-                  }}
                 >
                   View full package details →
-                </button>
+                </Link>
               </div>
             ))}
           </div>
 
-          {/* Main CTA */}
+          {/* Main CTA ✅ Real link */}
           <div className="mt-14 text-center">
-            <button
-              type="button"
-              className="rounded-full border border-white/20 px-6 py-3 text-sm text-white hover:bg-white/10 transition"
+            <Link
+              to="/packages"
+              className="rounded-full border border-white/20 px-6 py-3 text-sm text-white hover:bg-white/10 transition inline-flex"
             >
               Explore All Packages
-            </button>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* SHOP FRAMES */}
-
-      {/* FRAMES */}
       {/* FRAMES */}
       <section className="border-t border-black/10 bg-white">
-        <div className="mx-auto max-w-7xl py-16 md:py-20">
-          {/* Carousel */}
+        <div className="mx-auto max-w-7xl pt-6">
           <Carousel frames={frames} />
+         
         </div>
       </section>
 
