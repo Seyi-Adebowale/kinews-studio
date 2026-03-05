@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Contact() {
   const hours = useMemo(
@@ -50,15 +51,12 @@ export default function Contact() {
         </div>
 
         <div className="relative mx-auto max-w-7xl px-5 pt-28 pb-14 md:pt-32 md:pb-16">
-
           <h1 className="mt-3 text-4xl md:text-6xl font-semibold tracking-tight">
             Contact
           </h1>
           <p className="mt-3 max-w-xl text-sm md:text-base text-white/70 leading-relaxed">
             Reach out for bookings, questions, or custom requests.
           </p>
-
-         
         </div>
       </section>
 
@@ -81,7 +79,10 @@ export default function Contact() {
                   </li>
                   <li>
                     <span className="font-semibold text-black">Phone:</span>{" "}
-                    <a className="underline underline-offset-4" href="tel:+447486160965">
+                    <a
+                      className="underline underline-offset-4"
+                      href="tel:+447486160965"
+                    >
                       {phone}
                     </a>
                   </li>
@@ -155,7 +156,10 @@ export default function Contact() {
 
                 <ul className="mt-4 space-y-2 text-sm text-black/70">
                   {hours.map((h) => (
-                    <li key={h.day} className="flex items-center justify-between gap-4">
+                    <li
+                      key={h.day}
+                      className="flex items-center justify-between gap-4"
+                    >
                       <span className="font-medium">{h.day}</span>
                       <span className="text-black/60">{h.time}</span>
                     </li>
@@ -208,7 +212,6 @@ export default function Contact() {
                     >
                       Send message
                     </button>
-
                   </div>
 
                   <p className="text-xs text-black/50">
@@ -252,12 +255,12 @@ export default function Contact() {
               </p>
             </div>
 
-            <a
-              href="/book"
+            <Link
+              to="/book"
               className="mt-6 md:mt-0 inline-flex items-center justify-center rounded-2xl bg-white px-6 py-3 text-sm font-semibold text-black hover:opacity-90 transition"
             >
               Go to Bookings
-            </a>
+            </Link>
           </div>
         </div>
       </section>
