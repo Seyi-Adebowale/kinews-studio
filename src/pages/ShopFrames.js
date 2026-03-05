@@ -57,7 +57,6 @@ export default function ShopFrames() {
   const addToCart = (product, sizePicked) => {
     addItem(product, { size: sizePicked, qty: 1 });
 
-   
     close();
 
     showToast(`${product.name} added to cart`);
@@ -69,7 +68,9 @@ export default function ShopFrames() {
       <div
         className={[
           "fixed top-5 left-1/2 -translate-x-1/2 z-[60] transition-all duration-200",
-          toast.show ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2 pointer-events-none",
+          toast.show
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 -translate-y-2 pointer-events-none",
         ].join(" ")}
         aria-live="polite"
       >
@@ -167,7 +168,7 @@ export default function ShopFrames() {
           </div>
 
           {/* GRID */}
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {filtered.map((p) => (
               <div
                 key={p.id}
@@ -248,10 +249,21 @@ export default function ShopFrames() {
           onClick={close}
         >
           <div
-            className="w-full max-w-3xl overflow-hidden rounded-3xl bg-white text-black"
+            className="relative w-full max-w-3xl overflow-hidden rounded-3xl bg-white text-black"
             onClick={(e) => e.stopPropagation()}
           >
+            {/* ✅ Close button: always top-right of the modal (great on mobile) */}
+            <button
+              type="button"
+              onClick={close}
+              className="absolute top-4 right-4 z-10 rounded-full border border-black/10 bg-white/90 p-2 text-sm hover:border-black/25 transition"
+              aria-label="Close"
+            >
+              ✕
+            </button>
+
             <div className="grid md:grid-cols-2">
+              {/* Left image */}
               <div className="aspect-[4/3] bg-black/[0.04]">
                 <img
                   src={active.image}
@@ -260,33 +272,28 @@ export default function ShopFrames() {
                 />
               </div>
 
+              {/* Right content */}
               <div className="p-6 md:p-7">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <h3 className="text-xl font-semibold">{active.name}</h3>
-                    <p className="mt-2 text-sm text-black/60">
-                      {active.description}
-                    </p>
-                  </div>
-
-                  <button
-                    type="button"
-                    onClick={close}
-                    className="rounded-2xl border border-black/10 px-3 py-2 text-sm hover:border-black/25 transition"
-                    aria-label="Close"
-                  >
-                    ✕
-                  </button>
+                {/* Add a little padding on mobile so the title doesn't sit under the X */}
+                <div className="pr-10">
+                  <h3 className="text-xl font-semibold">{active.name}</h3>
+                  <p className="mt-2 text-sm text-black/60">
+                    {active.description}
+                  </p>
                 </div>
 
                 <div className="mt-5 space-y-2 text-sm text-black/70">
                   <div className="flex justify-between">
                     <span>Color</span>
-                    <span className="font-semibold text-black">{active.color}</span>
+                    <span className="font-semibold text-black">
+                      {active.color}
+                    </span>
                   </div>
                   <div className="flex justify-between">
                     <span>Finish</span>
-                    <span className="font-semibold text-black">{active.finish}</span>
+                    <span className="font-semibold text-black">
+                      {active.finish}
+                    </span>
                   </div>
                 </div>
 

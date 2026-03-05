@@ -42,7 +42,7 @@ export default function FloatingCart() {
     navigate("/checkout");
   };
 
-  if (isHidden) return null;
+ if (isHidden || !hasItems) return null;
 
   return (
     <>
@@ -217,17 +217,7 @@ export default function FloatingCart() {
               Checkout
             </button>
 
-            {/* <Link
-              to="/cart"
-              className={[
-                "rounded-2xl border px-5 py-3 text-sm font-semibold text-center transition",
-                hasItems
-                  ? "border-black/15 hover:border-black/30"
-                  : "border-black/10 text-black/40 pointer-events-none",
-              ].join(" ")}
-            >
-              View cart
-            </Link> */}
+        
           </div>
         </div>
       </div>
