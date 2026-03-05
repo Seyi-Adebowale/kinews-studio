@@ -40,7 +40,6 @@ function AppShell() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* ✅ Always mounted so it works on every navigation */}
       <ScrollToTop />
 
       <AnimatePresence mode="wait">

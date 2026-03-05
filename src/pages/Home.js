@@ -169,7 +169,7 @@ export default function Home() {
                   {s.desc}
                 </p>
 
-                {/* ✅ Real link */}
+               
                 <div className="mt-5">
                   <Link
                     to={s.to}
@@ -212,7 +212,7 @@ export default function Home() {
 
                 <p className="mt-4 text-sm text-white/60">{p.tagline}</p>
 
-                {/* ✅ Real link */}
+              
                 <Link
                   to="/packages"
                   className="mt-8 inline-flex items-center justify-center text-sm font-medium text-white/80 hover:text-white transition"
@@ -223,7 +223,6 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Main CTA ✅ Real link */}
           <div className="mt-14 text-center">
             <Link
               to="/packages"

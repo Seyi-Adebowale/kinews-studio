@@ -57,10 +57,9 @@ export default function ShopFrames() {
   const addToCart = (product, sizePicked) => {
     addItem(product, { size: sizePicked, qty: 1 });
 
-    // ✅ close modal after adding
+   
     close();
 
-    // ✅ show success toast
     showToast(`${product.name} added to cart`);
   };
 
